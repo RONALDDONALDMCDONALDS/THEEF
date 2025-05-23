@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      background: black url('https://i.imgur.com/DH5UjDe.jpg') no-repeat center center fixed;
+      background: black url('https://i.imgur.com/DH5UjDe.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: red;
       font-family: 'Courier New', monospace;
@@ -22,6 +22,21 @@
       font-size: 2rem;
       text-align: center;
       animation: flicker 2s infinite;
+      position: relative;
+    }
+
+    .line {
+      position: absolute;
+      opacity: 0;
+      animation: fade 8s infinite;
+    }
+
+    .line:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .line:nth-child(2) {
+      animation-delay: 4s;
     }
 
     @keyframes flicker {
@@ -32,12 +47,20 @@
         opacity: 0.1;
       }
     }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      40% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
-<div class="text">
-  Missing dogs. Missing men. Coincidence?<br />
-  Chó mất tích. Người mất tích. Trùng hợp?
-</div>
+  <div class="text">
+    <div class="line">Missing dogs. Missing men. Coincidence?</div>
+    <div class="line">Chó mất tích. Người mất tích. Trùng hợp?</div>
+  </div>
 </body>
 </html>
