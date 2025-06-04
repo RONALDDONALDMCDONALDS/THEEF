@@ -48,20 +48,26 @@
     <div class="line" id="line2">Chó mất tích. Người mất tích. Trùng hợp?</div>
   </div>
 
+  <audio id="howl" preload="auto">
+    <source src="howl.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
+    // Toggle text lines every 4 seconds
     setInterval(() => {
       const l1 = document.getElementById('line1');
       const l2 = document.getElementById('line2');
       l1.classList.toggle('show');
       l2.classList.toggle('show');
     }, 4000);
+
+    // Play audio after 4 seconds
+    setTimeout(() => {
+      const audio = document.getElementById('howl');
+      audio.play().catch((err) => {
+        console.warn("Autoplay blocked:", err);
+      });
+    }, 4000);
   </script>
 </body>
 </html>
-<!--
-  This HTML file creates a spooky webpage with a black background and flickering red text.
-  It alternates between two lines of text every 4 seconds, creating an eerie effect.
-  The text is styled to appear in the center of the screen, with a creepy image in the background.
-  The flickering effect is achieved using CSS animations.
-  The JavaScript toggles the visibility of the two lines of text.
-  The page is designed to evoke a sense of mystery and unease, fitting the theme of missing dogs.
