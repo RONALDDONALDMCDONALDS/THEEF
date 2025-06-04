@@ -9,19 +9,32 @@
       margin: 0;
       background: black url('creepy.png') no-repeat center center fixed;
       background-size: cover;
-      color: red;
-      font-family: Arial, 'Courier New', monospace, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: 'Courier New', monospace;
       overflow: hidden;
     }
 
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('scanlines.gif') repeat;
+      pointer-events: none;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
     .text {
+      color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 2rem;
       text-align: center;
       animation: flicker 2s infinite;
+      z-index: 2;
     }
 
     .line {
@@ -33,41 +46,16 @@
     }
 
     @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.1;
-      }
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.1; }
+    }
+
+    .flash {
+      animation: redFlash 0.3s ease-in-out;
+    }
+
+    @keyframes redFlash {
+      0% { background-color: rgba(255, 0, 0, 0.3); }
+      100% { background-color: transparent; }
     }
   </style>
-</head>
-<body>
-  <div class="text">
-    <div class="line show" id="line1">Missing dogs. Missing men. Coincidence?</div>
-    <div class="line" id="line2">Chó mất tích. Người mất tích. Trùng hợp?</div>
-  </div>
-
-  <audio id="howl" preload="auto">
-    <source src="howl.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    // Toggle text lines every 4 seconds
-    setInterval(() => {
-      const l1 = document.getElementById('line1');
-      const l2 = document.getElementById('line2');
-      l1.classList.toggle('show');
-      l2.classList.toggle('show');
-    }, 4000);
-
-    // Play audio after 4 seconds
-    setTimeout(() => {
-      const audio = document.getElementById('howl');
-      audio.play().catch((err) => {
-        console.warn("Autoplay blocked:", err);
-      });
-    }, 4000);
-  </script>
-</body>
-</html>
